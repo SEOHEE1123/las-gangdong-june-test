@@ -3,348 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026년 6월 영크 강동팀 근무표</title>
+  <title>6월 영크 강동팀 근무표</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      padding: 20px;
+      padding: 12px;
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
       background: #f3f6fb;
       color: #1f2937;
     }
 
-    .container {
-      max-width: 1400px;
+    .phone {
+      max-width: 430px;
       margin: 0 auto;
-    }
-
-    .top-card {
-      background: linear-gradient(135deg, #00429a, #0b63ce);
-      color: white;
-      padding: 24px;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0, 66, 154, 0.2);
-      margin-bottom: 18px;
-    }
-
-    .top-card h1 {
-      margin: 0 0 10px;
-      font-size: 26px;
-      line-height: 1.3;
-    }
-
-    .top-card p {
-      margin: 4px 0;
-      font-size: 14px;
-      opacity: 0.95;
-    }
-
-    .notice {
-      background: #fff;
-      border-radius: 16px;
-      padding: 16px 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-      border-left: 6px solid #00429a;
-    }
-
-    .notice strong {
-      color: #00429a;
-    }
-
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .status-box {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      background: #e8f1ff;
-      color: #00429a;
-      border: 1px solid #c7ddff;
-    }
-
-    .badge.gray {
-      background: #f1f5f9;
-      color: #475569;
-      border-color: #e2e8f0;
-    }
-
-    .badge.red {
-      background: #fff1f2;
-      color: #be123c;
-      border-color: #fecdd3;
-    }
-
-    .badge.green {
-      background: #ecfdf5;
-      color: #047857;
-      border-color: #a7f3d0;
-    }
-
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-weight: 700;
-      cursor: pointer;
-      background: #00429a;
-      color: white;
-      transition: 0.15s ease;
-    }
-
-    button:hover {
-      filter: brightness(0.95);
-    }
-
-    button.secondary {
-      background: #e2e8f0;
-      color: #1f2937;
-    }
-
-    button.danger {
-      background: #be123c;
-      color: white;
-    }
-
-    button:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .table-wrap {
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
-      overflow: auto;
-      border: 1px solid #e5e7eb;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: max-content;
-      min-width: 100%;
-      background: white;
-    }
-
-    th, td {
-      border: 1px solid #e5e7eb;
-      padding: 8px;
-      text-align: center;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    th {
-      background: #f8fafc;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      font-weight: 800;
-    }
-
-    th.name-col,
-    td.name-col {
-      position: sticky;
-      left: 0;
-      z-index: 6;
-      background: white;
-      min-width: 92px;
-      font-weight: 800;
-      box-shadow: 2px 0 0 rgba(226, 232, 240, 0.8);
-    }
-
-    th.name-col {
-      background: #f8fafc;
-      z-index: 8;
-    }
-
-    .date-head {
-      min-width: 72px;
-      vertical-align: top;
-    }
-
-    .date-num {
-      font-weight: 900;
-      font-size: 14px;
-      color: #111827;
-    }
-
-    .day {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 2px;
-    }
-
-    .holiday {
-      color: #be123c;
-      font-weight: 800;
-      font-size: 11px;
-      margin-top: 2px;
-    }
-
-    .limit {
-      font-size: 11px;
-      color: #00429a;
-      margin-top: 4px;
-      font-weight: 800;
-    }
-
-    .week-row th {
-      background: #e8f1ff;
-      color: #00429a;
-      font-size: 13px;
-    }
-
-    .week-complete {
-      background: #ecfdf5 !important;
-    }
-
-    .week-locked {
-      background: #f1f5f9 !important;
-      color: #64748b;
-    }
-
-    .checkbox-cell {
-      min-width: 72px;
-    }
-
-    input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      accent-color: #00429a;
-    }
-
-    input[type="checkbox"]:disabled {
-      cursor: not-allowed;
-    }
-
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .summary-card {
-      background: white;
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-      border: 1px solid #e5e7eb;
-    }
-
-    .summary-card h3 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      color: #00429a;
-    }
-
-    .week-list {
-      display: grid;
-      gap: 6px;
-      font-size: 13px;
-    }
-
-    .week-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 7px 8px;
-      border-radius: 10px;
-      background: #f8fafc;
-    }
-
-    .week-item.done {
-      background: #ecfdf5;
-      color: #047857;
-      font-weight: 800;
-    }
-
-    .week-item.locked {
-      background: #f1f5f9;
-      color: #64748b;
-      font-weight: 800;
-    }
-
-    .loading {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      text-align: center;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-    }
-
-    .error {
-      background: #fff1f2;
-      color: #be123c;
-      border: 1px solid #fecdd3;
-      padding: 14px;
-      border-radius: 14px;
-      margin-bottom: 14px;
-      font-weight: 700;
-    }
-
-    .admin-panel {
-      background: #fff;
-      border-radius: 16px;
-      padding: 16px;
-      margin-top: 18px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-    }
-
-    .admin-panel h2 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      color: #00429a;
-    }
-
-    .admin-controls {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    select, input[type="text"], input[type="password"] {
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 14px;
-      min-width: 160px;
     }
 
     .password-screen {
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      background: #f3f6fb;
+      align-items: center;
       padding: 20px;
+      background: #f3f6fb;
     }
 
     .password-card {
@@ -353,128 +36,505 @@
       background: white;
       border-radius: 22px;
       padding: 26px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
       text-align: center;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
     }
 
     .password-card h1 {
       margin: 0 0 10px;
       color: #00429a;
-      font-size: 24px;
+      font-size: 23px;
     }
 
     .password-card p {
       color: #64748b;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.5;
     }
 
     .password-card input {
       width: 100%;
       margin: 14px 0 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 11px;
       text-align: center;
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 900;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .password-card button {
       width: 100%;
+      background: #00429a;
+      color: white;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 900;
+    }
+
+    .top-card {
+      background: linear-gradient(135deg, #00429a, #0b63ce);
+      color: white;
+      padding: 16px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 66, 154, 0.18);
+      margin-bottom: 10px;
+    }
+
+    .top-card h1 {
+      margin: 0 0 7px;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .top-card p {
+      margin: 3px 0;
+      font-size: 12.5px;
+      opacity: .95;
+      line-height: 1.45;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 0 10px;
+    }
+
+    .refresh-btn {
+      background: #00429a;
+      color: white;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .week-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 11px;
+      overflow: hidden;
+    }
+
+    .week-header {
+      width: 100%;
+      background: #fff;
+      padding: 12px 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .week-title {
+      font-size: 15px;
+      color: #00429a;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .week-status {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+      margin-left: 8px;
+    }
+
+    .pill {
+      padding: 4px 7px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 900;
+      background: #f1f5f9;
+      color: #475569;
+      white-space: nowrap;
+    }
+
+    .week-body {
+      padding: 0 10px 12px;
+    }
+
+    .section-toggle {
+      width: 100%;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #00429a;
+      padding: 8px 10px;
+      margin: 8px 0 6px;
+      font-size: 12px;
+      font-weight: 950;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mini-calendar {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 4px;
+      table-layout: fixed;
+    }
+
+    .mini-calendar th {
+      font-size: 11px;
+      color: #64748b;
+      padding: 4px 0;
+      font-weight: 900;
+    }
+
+    .mini-calendar th.sun,
+    .mini-calendar th.sat {
+      color: #be123c;
+    }
+
+    .day-cell {
+      vertical-align: top;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 5px 3px;
+      min-height: 85px;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .day-cell.special {
+      background: #fff1f2;
+      border-color: #fecdd3;
+    }
+
+    .day-cell.mart-closed .date-line {
+      justify-content: center;
+    }
+
+    .day-cell.mart-closed .special-tag {
+      text-align: center;
+    }
+
+    .date-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 3px;
+    }
+
+    .date-num {
+      font-size: 13px;
+      font-weight: 950;
+      color: #111827;
+    }
+
+    .special .date-num {
+      color: #be123c;
+    }
+
+    .count {
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #00429a;
+      background: #e8f1ff;
+      border-radius: 999px;
+      padding: 2px 4px;
+      white-space: nowrap;
+    }
+
+    .special-tag {
+      display: block;
+      font-size: 8.8px;
+      line-height: 1.1;
+      color: #be123c;
+      font-weight: 950;
+      margin-bottom: 3px;
+      white-space: nowrap;
+    }
+
+    .names {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .name-chip {
+      display: block;
+      width: 100%;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      padding: 2px 3px;
+      font-size: 8.5px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #334155;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .name-chip.locked {
+      color: #94a3b8;
+      background: #f1f5f9;
+    }
+
+    .check-wrap {
+      border: 1px solid #e5e7eb;
+      border-radius: 13px;
+      overflow: auto;
+      background: white;
+      max-width: 100%;
+    }
+
+    .check-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      min-width: 360px;
+    }
+
+    .check-table th,
+    .check-table td {
+      border-bottom: 1px solid #eef2f7;
+      border-right: 1px solid #eef2f7;
+      text-align: center;
+      padding: 6px 2px;
+    }
+
+    .check-table th:last-child,
+    .check-table td:last-child {
+      border-right: none;
+    }
+
+    .check-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .group-divider td {
+      height: 4px;
+      padding: 0 !important;
+      background: #00429a !important;
+      border: none !important;
+      line-height: 0;
+    }
+
+    .check-table th {
+      background: #f8fafc;
+      color: #475569;
+      font-size: 10.5px;
+      font-weight: 950;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .check-table th.name-head,
+    .check-table td.name-cell {
+      width: 68px;
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      background: white;
+      box-shadow: 1px 0 0 #e5e7eb;
+    }
+
+    .check-table th.name-head {
+      background: #f8fafc;
+      z-index: 4;
+    }
+
+    .date-head-small {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.1;
+      gap: 2px;
+    }
+
+    .date-head-small .num {
+      font-size: 12px;
+      font-weight: 950;
+      color: #111827;
+    }
+
+    .date-head-small .dow {
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #64748b;
+    }
+
+    .date-head-small.special .num,
+    .date-head-small.special .dow,
+    .date-head-small.special .tag {
+      color: #be123c;
+    }
+
+    .date-head-small .tag {
+      font-size: 8px;
+      font-weight: 950;
+      color: #be123c;
+      white-space: nowrap;
+    }
+
+    .name-cell {
+      padding: 6px 4px !important;
+      text-align: left !important;
+    }
+
+    .member-name {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 950;
+      color: #1f2937;
+      line-height: 1.15;
+      vertical-align: middle;
+    }
+
+    .group-tag {
+      display: inline-block;
+      margin-left: 3px;
+      margin-top: 0;
+      font-size: 8.5px;
+      font-weight: 950;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 1px 4px;
+      border-radius: 999px;
+    }
+
+    .group-tag.leader {
+      color: #00429a;
+      background: #e8f1ff;
+    }
+
+    .locked-name .member-name {
+      color: #94a3b8;
+    }
+
+    input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #00429a;
+      margin: 0;
+    }
+
+    input[type="checkbox"]:disabled {
+      opacity: .45;
+    }
+
+    .mart-closed-col {
+      background: #fff1f2 !important;
+    }
+
+    .mart-closed-col input {
+      pointer-events: none;
+      opacity: .25;
+    }
+
+    .loading,
+    .error {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+
+    .error {
+      color: #be123c;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+    }
+
+    .admin-panel {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+      padding: 12px;
+      margin: 12px 0 20px;
+    }
+
+    .admin-panel h2 {
+      margin: 0 0 8px;
+      color: #00429a;
+      font-size: 15px;
+    }
+
+    .admin-panel input,
+    .admin-panel select {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 9px;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .admin-panel button {
+      width: 100%;
+      background: #be123c;
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: 900;
+      font-size: 13px;
     }
 
     .small-text {
-      font-size: 12px;
+      font-size: 11px;
       color: #64748b;
-      margin-top: 8px;
-      line-height: 1.5;
+      line-height: 1.4;
+      margin-bottom: 8px;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 12px;
-      }
-
-      .top-card {
-        padding: 18px;
-        border-radius: 16px;
-      }
-
-      .top-card h1 {
-        font-size: 22px;
-      }
-
-      th, td {
-        padding: 6px;
-        font-size: 12px;
-      }
-
-      .date-head {
-        min-width: 64px;
-      }
-
-      .checkbox-cell {
-        min-width: 64px;
-      }
-
-      input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-      }
-
-      th.name-col,
-      td.name-col {
-        min-width: 82px;
-      }
-    }
+    .hidden { display: none; }
   </style>
 </head>
 
 <body>
   <div id="passwordScreen" class="password-screen">
     <div class="password-card">
-      <h1>6월 근무표 테스트</h1>
-      <p>현재 6월 영크 강동팀 근무표 테스트 페이지입니다.<br>비밀번호를 입력해 주세요.</p>
+      <h1>6월 영크 강동팀 근무표</h1>
+      <p>비밀번호를 입력해 주세요.</p>
       <input id="passwordInput" type="password" placeholder="비밀번호 입력" />
       <button onclick="checkPassword()">입장하기</button>
-      <div class="small-text">테스트 비밀번호 기본값: 0601</div>
     </div>
   </div>
 
-  <div id="app" class="container" style="display:none;">
+  <div id="app" class="phone hidden">
     <div class="top-card">
-      <h1>2026년 6월 영크 강동팀 근무표</h1>
-      <p>주차별 4일 선택 기준으로 운영됩니다.</p>
-      <p>각 주차에서 4일 선택 완료 시 해당 주차는 자동 잠금 처리됩니다.</p>
+      <h1>6월 영크 강동팀 근무표</h1>
+      <p>- 기본 근무자 수 : 8명  (마트 휴무일 주간 : 9명)</p>
+      <p>- 각 주차에서 4일 선택 완료 시, 해당 주차는 자동 잠금 처리됩니다.</p>
+      <p>* 근무일 변경은 불가하오니, 신중하게 선택해주시기 바랍니다.</p>
     </div>
 
-    <div class="notice">
-      <strong>운영 기준</strong><br>
-      공휴일도 정상 근무일로 운영됩니다. 마트 휴무일이 포함된 주는 하루 최대 9명, 그 외 주는 하루 최대 8명까지 체크 가능합니다.<br>
-      6/29(월)~6/30(화)은 7월 1주차 기준으로 계산됩니다. 일정 변경이 필요한 경우 팀장에게 문의해 주세요.
+    <div class="toolbar">
+      <button class="refresh-btn" onclick="loadData()">새로고침</button>
     </div>
 
     <div id="errorBox"></div>
-
-    <div class="toolbar">
-      <div class="status-box">
-        <span class="badge">기준: 주 4일</span>
-        <span class="badge gray">일반 주: 8명</span>
-        <span class="badge gray">마트 휴무 포함 주: 9명</span>
-        <span class="badge green">공휴일 체크 가능</span>
-      </div>
-      <button onclick="loadData()">새로고침</button>
-    </div>
-
     <div id="mainContent" class="loading">데이터를 불러오는 중입니다...</div>
 
     <div class="admin-panel">
       <h2>팀장용 잠금 해제</h2>
-      <p class="small-text">팀원이 사유를 전달한 경우에만 해당 팀원의 해당 주차 잠금을 해제하세요.</p>
-      <div class="admin-controls">
-        <input id="adminNameInput" type="text" placeholder="팀장 이름 입력" />
-        <select id="unlockMemberSelect"></select>
-        <select id="unlockWeekSelect"></select>
-        <button class="danger" onclick="unlockSelectedWeek()">선택 주차 잠금 해제</button>
-      </div>
+      <div class="small-text">일정 변경 사유가 확인된 경우에만 사용하세요.</div>
+      <input id="adminNameInput" type="text" placeholder="팀장 이름 입력" />
+      <select id="unlockMemberSelect"></select>
+      <select id="unlockWeekSelect"></select>
+      <button onclick="unlockSelectedWeek()">선택 주차 잠금 해제</button>
     </div>
   </div>
 
@@ -498,15 +558,13 @@
         return;
       }
 
-      document.getElementById("passwordScreen").style.display = "none";
-      document.getElementById("app").style.display = "block";
+      document.getElementById("passwordScreen").classList.add("hidden");
+      document.getElementById("app").classList.remove("hidden");
       loadData();
     }
 
     document.getElementById("passwordInput").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        checkPassword();
-      }
+      if (event.key === "Enter") checkPassword();
     });
 
     async function loadData() {
@@ -518,7 +576,8 @@
         return;
       }
 
-      document.getElementById("mainContent").innerHTML = '<div class="loading">데이터를 불러오는 중입니다...</div>';
+      document.getElementById("mainContent").className = "loading";
+      document.getElementById("mainContent").innerHTML = "데이터를 불러오는 중입니다...";
 
       try {
         const response = await fetch(`${API_URL}?action=getData`);
@@ -529,6 +588,7 @@
         }
 
         state = data;
+        normalizeState();
         render();
       } catch (error) {
         showError("데이터 불러오기 실패: " + error.message);
@@ -536,70 +596,196 @@
       }
     }
 
+    function normalizeState() {
+      state.members = (state.members || []).filter(member =>
+        String(member.active).toUpperCase() === "TRUE"
+      );
+
+      state.calendar = (state.calendar || []).map(day => ({
+        ...day,
+        dailyLimit: Number(day.dailyLimit || state.settings.defaultDailyLimit || 8),
+        martClosed: String(day.martClosed).toUpperCase() === "TRUE",
+      }));
+
+      state.checks = state.checks || [];
+      state.weekLocks = state.weekLocks || [];
+      state.settings = state.settings || {};
+    }
+
     function render() {
-      renderScheduleTable();
+      const weeks = getWeeks();
+      let html = "";
+
+      weeks.forEach((week, index) => {
+        html += renderWeekCard(week, index);
+      });
+
+      document.getElementById("mainContent").className = "";
+      document.getElementById("mainContent").innerHTML = html;
+
+      attachCheckboxEvents();
       renderAdminOptions();
     }
 
-    function renderScheduleTable() {
-      const weeks = groupCalendarByWeek(state.calendar);
-      const dailyCounts = getDailyCounts();
+    function renderWeekCard(week, index) {
+      const isFirstWeek = index === 0;
+      const weekOpen = isFirstWeek;
+      const statusOpen = false;
+      const titlePrefix = weekOpen ? "▼" : "▶";
+      const weekTitle = `${titlePrefix} ${week.weekLabel} : ${formatRange(week.days)}`;
+      const martWeekText = week.days.some(day => day.martClosed) ? " 마트 휴무 주간" : "";
+      const weekBodyClass = weekOpen ? "week-body" : "week-body hidden";
 
-      let html = '<div class="table-wrap"><table>';
+      return `
+        <section class="week-card">
+          <button class="week-header" onclick="toggleWeek('${week.weekKey}')">
+            <div>
+              <div class="week-title">${weekTitle}${martWeekText}</div>
+            </div>
+            <div class="week-status"><span class="pill">${weekOpen ? "펼침" : "접힘"}</span></div>
+          </button>
 
-      html += '<tr>';
-      html += '<th class="name-col">이름</th>';
+          <div id="${week.weekKey}" class="${weekBodyClass}">
+            <button class="section-toggle" onclick="toggleWeek('status-${week.weekKey}')">
+              <span>날짜별 현황 보기</span>
+            </button>
 
-      state.calendar.forEach(day => {
-        const count = dailyCounts[day.date] || 0;
-        const dateNum = Number(day.date.split("-")[2]);
-        const holiday = day.holidayName ? `<div class="holiday">${day.holidayName}</div>` : "";
+            <div id="status-${week.weekKey}" class="${statusOpen ? "" : "hidden"}">
+              ${renderStatusCalendar(week)}
+            </div>
+
+            ${renderCheckTable(week)}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderStatusCalendar(week) {
+      const days = week.days;
+
+      let html = `
+        <table class="mini-calendar">
+          <thead>
+            <tr>
+              <th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th class="sat">토</th><th class="sun">일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      `;
+
+      days.forEach(day => {
+        const special = isSpecialDay(day);
+        const names = getCheckedNamesByDate(day.date);
+        const count = names.length;
+        const cellClass = [
+          "day-cell",
+          special ? "special" : "",
+          day.martClosed ? "mart-closed" : "",
+        ].join(" ");
+
+        if (day.martClosed) {
+          html += `
+            <td class="${cellClass}">
+              <div class="date-line"><span class="date-num">${getDayNumber(day.date)}</span></div>
+              <span class="special-tag">마트 휴무</span>
+              <div class="names"></div>
+            </td>
+          `;
+        } else {
+          html += `
+            <td class="${cellClass}">
+              <div class="date-line">
+                <span class="date-num">${getDayNumber(day.date)}</span>
+                <span class="count">${count}/${day.dailyLimit}</span>
+              </div>
+              ${day.holidayName ? `<span class="special-tag">${day.holidayName}</span>` : ""}
+              <div class="names">
+                ${names.map(name => `<span class="name-chip ${isWeekLocked(name, day.weekKey) ? "locked" : ""}">${name}</span>`).join("")}
+              </div>
+            </td>
+          `;
+        }
+      });
+
+      html += `
+            </tr>
+          </tbody>
+        </table>
+      `;
+
+      return html;
+    }
+
+    function renderCheckTable(week) {
+      let html = `
+        <div class="check-wrap">
+          <table class="check-table">
+            <thead>
+              <tr>
+                <th class="name-head">이름</th>
+      `;
+
+      week.days.forEach(day => {
+        const special = isSpecialDay(day);
         html += `
-          <th class="date-head">
-            <div class="date-num">${dateNum}</div>
-            <div class="day">${day.day}</div>
-            ${holiday}
-            <div class="limit">${count}/${day.dailyLimit}</div>
+          <th class="${day.martClosed ? "mart-closed-col" : ""}">
+            <div class="date-head-small ${special ? "special" : ""}">
+              <span class="num">${getDayNumber(day.date)}</span>
+              <span class="dow">${day.day}</span>
+              ${day.holidayName ? `<span class="tag">${day.holidayName.replace(" ", "")}</span>` : ""}
+            </div>
           </th>
         `;
       });
 
-      html += '</tr>';
+      html += `
+              </tr>
+            </thead>
+            <tbody>
+      `;
 
-      html += '<tr class="week-row">';
-      html += '<th class="name-col">주차</th>';
+      let previousGroup = "";
 
-      state.calendar.forEach(day => {
-        html += `<th>${shortWeekLabel(day.weekLabel)}</th>`;
-      });
+      state.members.forEach((member, index) => {
+        const currentGroup = member.group || "";
 
-      html += '</tr>';
+        if (
+          index > 0 &&
+          previousGroup &&
+          currentGroup &&
+          previousGroup !== currentGroup
+        ) {
+          html += `<tr class="group-divider"><td colspan="${week.days.length + 1}"></td></tr>`;
+        }
 
-      state.members.forEach(member => {
-        html += `<tr>`;
-        html += `<td class="name-col">${member.name}<br><span class="small-text">${member.group || ""}</span></td>`;
+        previousGroup = currentGroup;
 
-        state.calendar.forEach(day => {
+        const memberLocked = isWeekLocked(member.name, week.weekKey);
+
+        html += `
+          <tr>
+            <td class="name-cell ${memberLocked ? "locked-name" : ""}">
+              <span class="member-name">${member.name}</span>
+              <span class="group-tag ${currentGroup === "팀장" ? "leader" : ""}">${currentGroup}</span>
+            </td>
+        `;
+
+        week.days.forEach(day => {
           const checked = isChecked(member.name, day.date);
-          const locked = isWeekLocked(member.name, day.weekKey);
-          const dailyCount = dailyCounts[day.date] || 0;
-          const dailyLimit = Number(day.dailyLimit || 8);
-
-          const alreadyChecked = checked;
-          const dateFull = dailyCount >= dailyLimit && !alreadyChecked;
-          const disabled = locked || dateFull;
-
-          let cellClass = "checkbox-cell";
-          if (locked) cellClass += " week-locked";
-          if (checked && locked) cellClass += " week-complete";
+          const dailyCount = getCheckedNamesByDate(day.date).length;
+          const dateFull = dailyCount >= day.dailyLimit && !checked;
+          const disabled = memberLocked || day.martClosed || dateFull;
 
           html += `
-            <td class="${cellClass}">
+            <td class="${day.martClosed ? "mart-closed-col" : ""}">
               <input
                 type="checkbox"
+                data-name="${escapeAttr(member.name)}"
+                data-date="${day.date}"
+                data-week-key="${day.weekKey}"
                 ${checked ? "checked" : ""}
                 ${disabled ? "disabled" : ""}
-                onchange="handleCheckChange(this, '${escapeText(member.name)}', '${day.date}', '${day.weekKey}')"
               />
             </td>
           `;
@@ -608,61 +794,29 @@
         html += `</tr>`;
       });
 
-      html += '</table></div>';
+      html += `
+            </tbody>
+          </table>
+        </div>
+      `;
 
-      html += renderSummary();
-
-      document.getElementById("mainContent").innerHTML = html;
-    }
-
-    function renderSummary() {
-      const weekKeys = getUniqueWeeks();
-
-      let html = '<div class="summary">';
-
-      state.members.forEach(member => {
-        html += `
-          <div class="summary-card">
-            <h3>${member.name}</h3>
-            <div class="week-list">
-        `;
-
-        weekKeys.forEach(week => {
-          const count = countMemberWeek(member.name, week.weekKey);
-          const locked = isWeekLocked(member.name, week.weekKey);
-          const required = Number(state.settings.requiredDaysPerWeek || 4);
-
-          let className = "week-item";
-          let status = `${count}/${required}`;
-
-          if (locked) {
-            className += " locked";
-            status = `${count}/${required} 잠금`;
-          } else if (count >= required) {
-            className += " done";
-            status = `${count}/${required} 완료`;
-          }
-
-          html += `
-            <div class="${className}">
-              <span>${week.weekLabel}</span>
-              <span>${status}</span>
-            </div>
-          `;
-        });
-
-        html += `
-            </div>
-          </div>
-        `;
-      });
-
-      html += '</div>';
       return html;
     }
 
-    async function handleCheckChange(checkbox, name, date, weekKey) {
+    function attachCheckboxEvents() {
+      document.querySelectorAll("input[type='checkbox'][data-name]").forEach(checkbox => {
+        checkbox.addEventListener("change", async function() {
+          await handleCheckChange(this);
+        });
+      });
+    }
+
+    async function handleCheckChange(checkbox) {
+      const name = checkbox.dataset.name;
+      const date = checkbox.dataset.date;
+      const weekKey = checkbox.dataset.weekKey;
       const checked = checkbox.checked;
+
       checkbox.disabled = true;
       clearError();
 
@@ -678,10 +832,8 @@
         if (!result.ok) {
           checkbox.checked = !checked;
           alert(result.message || "저장할 수 없습니다.");
-        } else {
-          if (result.locked) {
-            alert("해당 주차 근무일 4개 선택이 완료되어 자동 잠금 처리되었습니다.");
-          }
+        } else if (result.locked) {
+          alert("해당 주차 근무일 4개 선택이 완료되어 자동 잠금 처리되었습니다.");
         }
 
         await loadData();
@@ -714,9 +866,7 @@
         return;
       }
 
-      if (!confirm(`${name}님의 ${weekKey} 잠금을 해제할까요?`)) {
-        return;
-      }
+      if (!confirm(`${name}님의 ${weekKey} 잠금을 해제할까요?`)) return;
 
       try {
         const result = await postData({
@@ -747,7 +897,7 @@
         memberSelect.appendChild(option);
       });
 
-      getUniqueWeeks().forEach(week => {
+      getWeeks().forEach(week => {
         const option = document.createElement("option");
         option.value = week.weekKey;
         option.textContent = week.weekLabel;
@@ -755,10 +905,10 @@
       });
     }
 
-    function groupCalendarByWeek(calendar) {
+    function getWeeks() {
       const map = {};
 
-      calendar.forEach(day => {
+      state.calendar.forEach(day => {
         if (!map[day.weekKey]) {
           map[day.weekKey] = {
             weekKey: day.weekKey,
@@ -773,31 +923,13 @@
       return Object.values(map);
     }
 
-    function getUniqueWeeks() {
-      const map = {};
-
-      state.calendar.forEach(day => {
-        if (!map[day.weekKey]) {
-          map[day.weekKey] = {
-            weekKey: day.weekKey,
-            weekLabel: day.weekLabel,
-          };
-        }
-      });
-
-      return Object.values(map);
-    }
-
-    function getDailyCounts() {
-      const counts = {};
-
-      state.checks.forEach(check => {
-        if (String(check.checked).toUpperCase() === "TRUE") {
-          counts[check.date] = (counts[check.date] || 0) + 1;
-        }
-      });
-
-      return counts;
+    function getCheckedNamesByDate(date) {
+      return state.checks
+        .filter(check =>
+          check.date === date &&
+          String(check.checked).toUpperCase() === "TRUE"
+        )
+        .map(check => check.name);
     }
 
     function isChecked(name, date) {
@@ -816,21 +948,36 @@
       );
     }
 
-    function countMemberWeek(name, weekKey) {
-      return state.checks.filter(check =>
-        check.name === name &&
-        check.weekKey === weekKey &&
-        String(check.checked).toUpperCase() === "TRUE"
-      ).length;
+    function isSpecialDay(day) {
+      return day.day === "토" || day.day === "일" || day.holidayName || day.martClosed;
     }
 
-    function shortWeekLabel(label) {
-      if (!label) return "";
-      return label.replace("6월 ", "").replace("7월 ", "7월 ");
+    function getDayNumber(dateString) {
+      return Number(String(dateString).split("-")[2]);
     }
 
-    function escapeText(text) {
-      return String(text).replace(/'/g, "\\'");
+    function formatRange(days) {
+      if (!days || days.length === 0) return "";
+
+      const first = days[0];
+      const last = days[days.length - 1];
+
+      return `${formatShortDate(first.date)}(${first.day})~${formatShortDate(last.date)}(${last.day})`;
+    }
+
+    function formatShortDate(dateString) {
+      const parts = String(dateString).split("-");
+      return `${Number(parts[1])}/${Number(parts[2])}`;
+    }
+
+    function toggleWeek(id) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      element.classList.toggle("hidden");
+    }
+
+    function escapeAttr(value) {
+      return String(value).replace(/"/g, "&quot;");
     }
 
     function showError(message) {
