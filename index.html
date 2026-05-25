@@ -338,7 +338,7 @@
 
     .check-table th.name-head,
     .check-table td.name-cell {
-      width: 68px;
+      width: 76px;
       position: sticky;
       left: 0;
       z-index: 3;
@@ -385,29 +385,37 @@
     }
 
     .name-cell {
-      padding: 6px 4px !important;
+      padding: 5px 3px !important;
       text-align: left !important;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .member-name {
       display: inline-block;
-      font-size: 11.5px;
+      font-size: 10.5px;
       font-weight: 950;
       color: #1f2937;
-      line-height: 1.15;
+      line-height: 1.1;
       vertical-align: middle;
+      max-width: 42px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .group-tag {
       display: inline-block;
-      margin-left: 3px;
+      margin-left: 2px;
       margin-top: 0;
-      font-size: 8.5px;
+      font-size: 7.5px;
       font-weight: 950;
       color: #64748b;
       background: #f1f5f9;
-      padding: 1px 4px;
+      padding: 1px 3px;
       border-radius: 999px;
+      vertical-align: middle;
+      white-space: nowrap;
     }
 
     .group-tag.leader {
@@ -457,48 +465,6 @@
       border: 1px solid #fecdd3;
     }
 
-    .admin-panel {
-      background: white;
-      border-radius: 16px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
-      padding: 12px;
-      margin: 12px 0 20px;
-    }
-
-    .admin-panel h2 {
-      margin: 0 0 8px;
-      color: #00429a;
-      font-size: 15px;
-    }
-
-    .admin-panel input,
-    .admin-panel select {
-      width: 100%;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 9px;
-      margin-bottom: 7px;
-      font-size: 13px;
-    }
-
-    .admin-panel button {
-      width: 100%;
-      background: #be123c;
-      color: white;
-      border-radius: 10px;
-      padding: 10px;
-      font-weight: 900;
-      font-size: 13px;
-    }
-
-    .small-text {
-      font-size: 11px;
-      color: #64748b;
-      line-height: 1.4;
-      margin-bottom: 8px;
-    }
-
     .hidden { display: none; }
   </style>
 </head>
@@ -527,15 +493,6 @@
 
     <div id="errorBox"></div>
     <div id="mainContent" class="loading">데이터를 불러오는 중입니다...</div>
-
-    <div class="admin-panel">
-      <h2>팀장용 잠금 해제</h2>
-      <div class="small-text">일정 변경 사유가 확인된 경우에만 사용하세요.</div>
-      <input id="adminNameInput" type="text" placeholder="팀장 이름 입력" />
-      <select id="unlockMemberSelect"></select>
-      <select id="unlockWeekSelect"></select>
-      <button onclick="unlockSelectedWeek()">선택 주차 잠금 해제</button>
-    </div>
   </div>
 
   <script>
@@ -624,13 +581,11 @@
       document.getElementById("mainContent").innerHTML = html;
 
       attachCheckboxEvents();
-      renderAdminOptions();
     }
 
     function renderWeekCard(week, index) {
       const isFirstWeek = index === 0;
       const weekOpen = isFirstWeek;
-      const statusOpen = false;
       const titlePrefix = weekOpen ? "▼" : "▶";
       const weekTitle = `${titlePrefix} ${week.weekLabel} : ${formatRange(week.days)}`;
       const martWeekText = week.days.some(day => day.martClosed) ? " 마트 휴무 주간" : "";
@@ -650,7 +605,7 @@
               <span>날짜별 현황 보기</span>
             </button>
 
-            <div id="status-${week.weekKey}" class="${statusOpen ? "" : "hidden"}">
+            <div id="status-${week.weekKey}" class="hidden">
               ${renderStatusCalendar(week)}
             </div>
 
@@ -752,9 +707,8 @@
 
         if (
           index > 0 &&
-          previousGroup &&
-          currentGroup &&
-          previousGroup !== currentGroup
+          currentGroup === "2기" &&
+          previousGroup !== "2기"
         ) {
           html += `<tr class="group-divider"><td colspan="${week.days.length + 1}"></td></tr>`;
         }
@@ -854,55 +808,6 @@
       });
 
       return await response.json();
-    }
-
-    async function unlockSelectedWeek() {
-      const adminName = document.getElementById("adminNameInput").value.trim();
-      const name = document.getElementById("unlockMemberSelect").value;
-      const weekKey = document.getElementById("unlockWeekSelect").value;
-
-      if (!adminName || !name || !weekKey) {
-        alert("팀장 이름, 팀원, 주차를 모두 선택해 주세요.");
-        return;
-      }
-
-      if (!confirm(`${name}님의 ${weekKey} 잠금을 해제할까요?`)) return;
-
-      try {
-        const result = await postData({
-          action: "unlockMemberWeek",
-          adminName,
-          name,
-          weekKey,
-        });
-
-        alert(result.message || "처리되었습니다.");
-        await loadData();
-      } catch (error) {
-        showError("잠금 해제 실패: " + error.message);
-      }
-    }
-
-    function renderAdminOptions() {
-      const memberSelect = document.getElementById("unlockMemberSelect");
-      const weekSelect = document.getElementById("unlockWeekSelect");
-
-      memberSelect.innerHTML = "";
-      weekSelect.innerHTML = "";
-
-      state.members.forEach(member => {
-        const option = document.createElement("option");
-        option.value = member.name;
-        option.textContent = member.name;
-        memberSelect.appendChild(option);
-      });
-
-      getWeeks().forEach(week => {
-        const option = document.createElement("option");
-        option.value = week.weekKey;
-        option.textContent = week.weekLabel;
-        weekSelect.appendChild(option);
-      });
     }
 
     function getWeeks() {
